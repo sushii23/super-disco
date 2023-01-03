@@ -22,12 +22,12 @@ $(document).ready(function(){
       });
     });
 
-    function timeUpdater() {
+    function timeUpdate() {
         
         var currentHour = moment().hours();
     
        
-        $(".time-block").each(function () {
+        $(".hour-block").each(function () {
           var blockHour = parseInt($(this).attr('id').split('-')[1]);
     
           
@@ -44,5 +44,5 @@ $(document).ready(function(){
         });
       }
     
-      timeUpdater();
+      timeUpdate();
 
