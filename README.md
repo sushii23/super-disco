@@ -25,5 +25,6 @@ THEN the text for that event is saved in local storage
 WHEN I refresh the page
 THEN the saved events persist
 
-![screen shot](./Main/assets/sched.png)
+link to app:
+https://sushii23.github.io/super-disco/
 
