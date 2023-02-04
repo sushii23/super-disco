@@ -50,6 +50,13 @@
 var now =  moment().format("dddd, MMMM Do YYYY, h:mm a");
 $("#topDate").text(now);
 
+function taskRender(){
+  for (let i = 9; i <= 17; i++) {
+      $(`#${i}`).val(localStorage.getItem(`${i}`))
+  }
+} 
+taskRender();
+
 // $("#currentDay").text(moment().format("dddd, MMMM Do"));
 $(document).ready(function(){
   // retrieve saved data from local storage and display in corresponding time block
@@ -59,7 +66,7 @@ $(document).ready(function(){
     $(this).find("textEvent").val(savedValue);
   });
 
-  $(".saveBtn").on("click", function(){
+  $("saveBtn").on("click", function(){
     var value = $(this).siblings("textEvent").val();
     var time = $(this).parent().attr('id');
 
@@ -72,6 +79,8 @@ $(document).ready(function(){
     }, 5000);
   });
 });
+
+
 
     function timeUpdate() {
         
@@ -96,4 +105,37 @@ $(document).ready(function(){
       }
     
       timeUpdate();
+  
+      // Select all save buttons
+const saveBtns = document.querySelectorAll('.saveBtn');
 
+// Add click event listener to each save button
+saveBtns.forEach(button => {
+  button.addEventListener('click', function() {
+    // Get the input element for the event
+    const eventInput = button.previousElementSibling;
+    
+    // Get the event ID from the parent container
+    const eventId = this.parentElement.id;
+    
+    // Store the event into local storage
+    localStorage.setItem(eventId, eventInput.value);
+  });
+});
+
+// Select all input fields
+const eventInputs = document.querySelectorAll('.textEvent');
+
+// Loop through all input fields
+eventInputs.forEach(input => {
+  // Get the event ID from the parent container
+  const eventId = input.parentElement.id;
+  
+  // Get the stored event from local storage
+  const storedEvent = localStorage.getItem(eventId);
+  
+  // If a stored event exists, display it in the input field
+  if (storedEvent) {
+    input.value = storedEvent;
+  }
+});
